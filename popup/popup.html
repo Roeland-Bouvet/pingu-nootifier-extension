@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pingu Nootifier</title>
+  <link rel="stylesheet" type="text/css" href="popup.css" />
+</head>
+
+<body>
+  <h1>Pingu Nootifier</h1>
+  <label for="maxTabs">Max open tabs:</label><br>
+  <input id="maxTabs" name="maxTabs" type="number" min="1" /><br>
+  <label for="alarmLevel">Alarm type:</label><br>
+  <select id="alarmLevel" name="alarmLevel">
+    <option value="1">Subtle nootification</option>
+    <option value="2">Going full noot</option>
+  </select><br>
+  <input id="soundEnabled" name="soundEnabled" type="checkbox" /><label for="soundEnabled">Enable sound</label>
+  <div class="stats">
+    <div>Total noots:</div>
+    <div id="totalNoots" class="totalNoots">0</div>
+  </div>
+  <img src="../resources/128.png" />
+  <script src="popup.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+/* This styling will be injected in the active page.
+Try to avoid using common class names or selectors with low selectivity to avoid overwrite site styling,
+unless off course that is the goal of your extension... :) */
+
+.pingu-popup {
+  height: 100px;
+  width: auto;
+  position: fixed;
+  left: 50%;
+  bottom: -100px;
+  transition: transform ease 200ms;
+  z-index: 9999999;
+}
+
+.pingu-popup-large {
+  height: 400px;
+  width: auto;
+  position: fixed;
+  left: calc(50% - 267px);
+  bottom: -400px;
+  transition: transform ease 2500ms;
+  z-index: 9999999;
+}
+
+.pingu-popup--active {
+  transform: translateY(-100px);
+}
+
+.pingu-popup-large--active {
+  transform: translateY(-400px);
+}

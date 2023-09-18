@@ -1,0 +1,55 @@
+body {
+  position: relative;
+  box-sizing: border-box;
+  width: 300px;
+  padding: 15px;
+  margin: 0;
+  border-top: 1px solid gray;
+  border-left: 1px solid gray;
+  background-color: black;
+  color: white;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-size: 12px;
+}
+
+h1 {
+  margin: 0 0 10px 0;
+}
+
+label {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+input,
+select {
+  width: 150px;
+  margin: 0;
+  padding: 2px 4px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+}
+
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+img {
+  position: absolute;
+  height: 60px;
+  right: 15px;
+  bottom: 0;
+}
+
+.stats {
+  position: absolute;
+  border: 1px solid #c19737;
+  padding: 5px;
+  margin: 0;
+  right: 20px;
+  top: 82px;
+  border-radius: 5px;
+}
