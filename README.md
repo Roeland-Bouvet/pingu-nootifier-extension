@@ -13,7 +13,7 @@ Beware of your sound volume, as you will be noot nooted!
 You can clone this repo or download the files, and install the extension locally:
 
 * In your Chromium brower (Chrome/Edge/...), go to "Manage Extensions" and enable "Developer mode".
-* Press "Load unpacked" and select the root folder of the extension.
+* Press "Load unpacked" and select the /src folder of the extension.
 * Enable the extension.
 
 You only need to load in the extension once like this. Afterwards you can make changes to the source files and update the extension by simply pressing the reload or update button.

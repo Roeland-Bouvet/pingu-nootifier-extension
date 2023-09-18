@@ -37,8 +37,8 @@ const tabCheck = async () => {
   if (Array.isArray(allTabs) && allTabs.length > maxTabs) {
     // Get the currently active tab and send a message to trigger the alarm
     const activeTab = allTabs.filter((tab) => tab.active);
-    // Checking if the active tab starts with a http to prevent sending messages to chrome// or edge// settings tabs
-    if (activeTab.length > 0 && activeTab[0].url.startsWith("http")) {
+    // Checking url of the active tab to prevent sending messages to chrome// or edge// settings tabs
+    if (activeTab.length > 0 && (activeTab[0].url.startsWith("https://") || activeTab[0].url.startsWith("file://"))) {
       chrome.tabs.sendMessage(activeTab[0].id, { triggerAlarm: true, soundEnabled: soundEnabled, alarmLevel: alarmLevel });
       // Update total noots
       totalNoots++;
