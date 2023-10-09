@@ -11,8 +11,8 @@ const initPinguNootifier = () => {
   // Setup injected resources
   const pinguSound = new Audio(chrome.runtime.getURL("resources/noot.mp3"));
   const pinguImageUrl = chrome.runtime.getURL("resources/128.png");
-  const pinguImage = document.createElement('img');
-  const pinguImageLarge = document.createElement('img');
+  const pinguImage = document.createElement("img");
+  const pinguImageLarge = document.createElement("img");
   pinguImage.src = pinguImageUrl;
   pinguImageLarge.src = pinguImageUrl;
   pinguImage.classList.add("pingu-popup");
@@ -59,7 +59,6 @@ const initPinguNootifier = () => {
           playSound();
         }
       }
-      return true;
     }
   );
 

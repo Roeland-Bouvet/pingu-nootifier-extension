@@ -2,30 +2,46 @@
 // You could use it to set up a web connection or an interval function, register certain events, save/load data, send or receive messages...
 // In this project, the service worker will start an interval to check the total amount of tabs in the current window
 // and send a message to trigger the alarm in the active tab if it exceeds the maximum.
+
 let intervalID;
 
 // Initialize the tabcheck when first installed
 chrome.runtime.onInstalled.addListener(() => {
-  console.log('Pingu Nootifier installed!');
+  console.log("Pingu Nootifier installed!");
   initTabCheck();
 });
 
 // Initialize the tabcheck when started up
 chrome.runtime.onStartup.addListener(() => {
-  console.log('Pingu Nootifier started up!');
+  console.log("Pingu Nootifier started up!");
   initTabCheck();
 });
 
-const initTabCheck = () => {
-  // Set up the interval if it's not running yet
+const initTabCheck = async () => {
+  // The approach below starts up a regular interval function.
+  // Generally this works fine, but if there is a period of inactivity from the user, the service worker can become inactive causing the interval to stop.
+  // Google generally wants to deactivate workers when possible to save resources. So we need to find ways to keep it alive.
+  // There are some different hacky methods. But it's currently recommended to use the Alarms API to set up repeating functions.
+  // https://developer.chrome.com/docs/extensions/migrating/to-service-workers/#convert-timers
   if (!intervalID) {
     intervalID = setInterval(tabCheck, 3000);
   }
+
+  // Create a repeating alarm (trigger once every minute) to keep the service alive and reset the interval if needed.
+  // If you only need to repeat your function once every minute or longer, then you can just use this instead of setInterval.
+  await chrome.alarms.create("tabCheckAlarm", { periodInMinutes: 1 });
 };
+
+// Listen for the alarm and reset the interval if it's undefined
+chrome.alarms.onAlarm.addListener((alarm) => {
+  if (alarm.name === "tabCheckAlarm" && !intervalID) {
+    intervalID = setInterval(tabCheck, 3000);
+  }
+});
 
 const tabCheck = async () => {
   // Get the values from the popup
-  const result = await chrome.storage.local.get(["maxTabs", "alarmLevel", "soundEnabled", "totalNoots"]).then((result) => result);
+  const result = await chrome.storage.local.get(["maxTabs", "alarmLevel", "soundEnabled", "totalNoots"]);
   const maxTabs = result.maxTabs || 10;
   const alarmLevel = result.alarmLevel || 1;
   const soundEnabled = result.soundEnabled || false;
@@ -42,7 +58,7 @@ const tabCheck = async () => {
       chrome.tabs.sendMessage(activeTab[0].id, { triggerAlarm: true, soundEnabled: soundEnabled, alarmLevel: alarmLevel });
       // Update total noots
       totalNoots++;
-      chrome.storage.local.set({ totalNoots: totalNoots }).then(() => { console.log("Noots updated") });
+      chrome.storage.local.set({ totalNoots: totalNoots });
     }
   }
 };
