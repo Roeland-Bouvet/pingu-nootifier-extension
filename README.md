@@ -52,7 +52,7 @@ For the most basic extension it suffices to just include the fields that describ
   },
 
   // Declare which Chrome extension APIs you want the extension to have access to
-  "permissions": ["scripting", "tabs", "activeTab", "storage", "webRequest"],
+  "permissions": ["scripting", "tabs", "activeTab", "storage", "webRequest", "alarms"],
 
   // Declare on what origins you allow the extension to be active
   "host_permissions": ["*://*/*"],
