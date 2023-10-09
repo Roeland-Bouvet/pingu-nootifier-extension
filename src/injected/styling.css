@@ -1,8 +1,11 @@
 /* This styling will be injected in the active page.
-Try to avoid using common class names or selectors with low selectivity to avoid overwrite site styling,
-unless off course that is the goal of your extension... :) */
+Try to avoid injecting common class names, or selectors that can target more than needed, to avoid overwrite site styling,
+unless off course that is the goal of your extension... :)
+Also be aware that sites might have CSS selectors with strong specificity for any general elements you're injecting (like img).
+So make sure to use a high specificity in those cases (like by using ID selectors) */
 
-.pingu-popup {
+#pingu-popup {
+  display: block;
   height: 100px;
   width: auto;
   position: fixed;
@@ -12,7 +15,8 @@ unless off course that is the goal of your extension... :) */
   z-index: 9999999;
 }
 
-.pingu-popup-large {
+#pingu-popup-large {
+  display: block;
   height: 400px;
   width: auto;
   position: fixed;
@@ -22,10 +26,10 @@ unless off course that is the goal of your extension... :) */
   z-index: 9999999;
 }
 
-.pingu-popup--active {
+#pingu-popup.show-pingu {
   transform: translateY(-100px);
 }
 
-.pingu-popup-large--active {
+#pingu-popup-large.show-pingu {
   transform: translateY(-400px);
 }

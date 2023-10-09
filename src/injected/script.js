@@ -15,8 +15,8 @@ const initPinguNootifier = () => {
   const pinguImageLarge = document.createElement("img");
   pinguImage.src = pinguImageUrl;
   pinguImageLarge.src = pinguImageUrl;
-  pinguImage.classList.add("pingu-popup");
-  pinguImageLarge.classList.add("pingu-popup-large");
+  pinguImage.id = "pingu-popup";
+  pinguImageLarge.id= "pingu-popup-large";
   document.body.appendChild(pinguImage);
   document.body.appendChild(pinguImageLarge);
 
@@ -35,9 +35,9 @@ const initPinguNootifier = () => {
         // Show Pingu
         if (request.alarmLevel == 2) {
           pinguSound.playbackRate = 0.35;
-          pinguImageLarge.classList.add("pingu-popup-large--active");
+          pinguImageLarge.classList.add("show-pingu");
           setTimeout(() => {
-            pinguImageLarge.classList.remove("pingu-popup-large--active");
+            pinguImageLarge.classList.remove("show-pingu");
           }, "2500");
           setTimeout(() => {
             alarmTriggered = false;
@@ -45,9 +45,9 @@ const initPinguNootifier = () => {
         } else {
           pinguSound.playbackRate = 1;
           pinguImage.style.left = "calc(" + getRandom(positions) + "% - 60px)";
-          pinguImage.classList.add("pingu-popup--active");
+          pinguImage.classList.add("show-pingu");
           setTimeout(() => {
-            pinguImage.classList.remove("pingu-popup--active");
+            pinguImage.classList.remove("show-pingu");
           }, "1000");
           setTimeout(() => {
             alarmTriggered = false;
